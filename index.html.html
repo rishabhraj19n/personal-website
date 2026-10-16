@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Personal Website</title>
+  
+  <!-- Font Awesome Icons & Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       1. VARIABLES & RESET
+       ========================================================================== */
+    :root {
+      --bg-primary: #f9fafb;
+      --bg-secondary: #ffffff;
+      --text-primary: #111827;
+      --text-secondary: #4b5563;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --border: #e5e7eb;
+      --card-bg: #ffffff;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    }
+
+    /* Dark Mode Theme Variables */
+    [data-theme="dark"] {
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent: #3b82f6;
+      --accent-hover: #60a5fa;
+      --border: #334155;
+      --card-bg: #1e293b;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    a:hover {
+      color: var(--accent-hover);
+    }
+
+    /* ==========================================================================
+       2. LAYOUT & NAVIGATION
+       ========================================================================== */
+    header {
+      position: sticky;
+      top: 0;
+      background-color: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .logo-avatar {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 30%;
+      border: 2px solid var(--border);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 50%;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    section {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: var(--text-primary);
+    }
+
+    /* ==========================================================================
+       3. HERO SECTION
+       ========================================================================== */
+    .hero {
+      padding: 5rem 0 3rem 0;
+    }
+
+    .hero-name {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title {
+      font-size: 1.5rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-bio {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      max-width: 650px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #ffffff !important;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--border);
+    }
+
+    /* ==========================================================================
+       4. ABOUT & SKILLS
+       ========================================================================== */
+    .about-text {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 500;
+      box-shadow: var(--shadow);
+    }
+
+    /* ==========================================================================
+       5. PROJECTS SECTION
+       ========================================================================== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tag {
+      background-color: var(--bg-primary);
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    /* ==========================================================================
+       6. EXPERIENCE SECTION
+       ========================================================================== */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .timeline-item {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+    }
+
+    .job-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .company {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .date {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    .timeline-desc {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* ==========================================================================
+       7. CONTACT & FOOTER
+       ========================================================================== */
+    .contact-info {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    .contact-item i {
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border);
+      background-color: var(--bg-secondary);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 640px) {
+      .hero-name { font-size: 2.25rem; }
+      .hero-title { font-size: 1.25rem; }
+      .nav-links { gap: 1rem; font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <img src="profile-photo.jpeg" alt="Rishabh Raj" class="logo-avatar">
+        <span>Rishabh Raj</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle Theme">
+            <i class="fa-solid me-1 fa-moon"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <!-- EDIT YOUR NAME HERE -->
+      <h1 class="hero-name">Hi, I'm Rishabh Raj</h1>
+      <!-- EDIT YOUR JOB TITLE HERE -->
+      <p class="hero-title">Full Stack Web Developer</p>
+      <!-- EDIT YOUR SHORT BIO HERE -->
+      <p class="hero-bio">
+        I build clean, accessible, and fast web applications. Focused on crafting elegant code and seamless user experiences.
+      </p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary">Get In Touch</a>
+        <a href="#projects" class="btn btn-secondary">View My Projects</a>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+      <h2 class="section-title">About Me</h2>
+      <p class="about-text">
+        <!-- EDIT YOUR DETAILED BIO HERE -->
+        Hello! I'm a passionate developer with experience in building modern web applications. 
+        I enjoy turning complex problems into simple, beautiful, and intuitive designs. When I'm not coding, 
+        you can find me reading technical articles, exploring new technologies, or contributing to open-source software.
+      </p>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills">
+      <h2 class="section-title">Skills & Technologies</h2>
+      <div class="skills-grid">
+        <!-- EDIT / ADD YOUR SKILLS HERE -->
+        <div class="skill-card">JavaScript</div>
+        <div class="skill-card">TypeScript</div>
+        <div class="skill-card">React.js</div>
+        <div class="skill-card">Node.js</div>
+        <div class="skill-card">HTML5 & CSS3</div>
+        <div class="skill-card">Tailwind CSS</div>
+        <div class="skill-card">Git & GitHub</div>
+        <div class="skill-card">REST APIs</div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="projects-grid">
+        
+        <!-- PROJECT 1 -->
+        <div class="project-card">
+          <div>
+            <h3 class="project-title">Technical Event Dashboard</h3>
+            <p class="project-desc">A responsive, full-stack Event Management Dashboard designed for society administrators to manage technical events, monitor registrations in real-time, and track attendee metrics.</p>
+            <div class="project-tags">
+              <span class="tag">React</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">HTML/CSS</span>
+            </div>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/rishabhraj19n/MERN-Event-Dashboard" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Code</a>
+          </div>
+        </div>
+
+        <!-- PROJECT 2 -->
+        <div class="project-card">
+          <div>
+            <h3 class="project-title">Weather App</h3>
+            <p class="project-desc">A clean Weather Web Application built with HTML, CSS and JavaScript to display real-time temperature, humidity and wind speed.</p>
+            <div class="project-tags">
+              <span class="tag">JavaScript</span>
+              <span class="tag">HTML/CSS</span>
+              <span class="tag">Weather API</span>
+              
+            </div>
+          </div>
+          <div class="project-links">
+            
+            <a href="https://github.com/rishabhraj19n/Weather-App" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Code</a>
+          </div>
+        </div>
+
+        <!-- PROJECT 3 -->
+        <div class="project-card">
+          <div>
+            <h3 class="project-title">4-Way Traffic Light Controller</h3>
+            <p class="project-desc">A complete VLSI & Digital Design project implementing a 4-way traffic light controller using a Moore Finite State Machine (FSM). Designed, implemented, and verified in both Verilog HDL and C++ with 100% timing accuracy.</p>
+            <div class="project-tags">
+              <span class="tag">Verilog</span>
+              <span class="tag">C++</span>
+              <span class="tag">HTML</span>
+            </div>
+          </div>
+          <div class="project-links">
+           
+            <a href="https://github.com/rishabhraj19n/traffic-light-fsm" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> Code</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section id="experience">
+      <h2 class="section-title">Work Experience</h2>
+      <div class="timeline">
+        
+        <!-- JOB 1 -->
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <div>
+              <span class="job-title">Web Developer Intern</span> • 
+              <span class="company">IBM</span>
+            </div>
+            <span class="date">June 2026 - Aug 2026</span>
+          </div>
+          <p class="timeline-desc">
+            Learned and applied web development skills, contributing to internal projects and gaining hands-on experience with modern web technologies.
+          </p>
+        </div>
+
+        <!-- JOB 2 -->
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <div>
+              <span class="job-title">Core Coordinator</span> • 
+              <span class="company">Phoenix Technical Society at AKGEC</span>
+            </div>
+            <span class="date">2024 - Present</span>
+          </div>
+          <p class="timeline-desc">
+            Coordinated technical events, workshops, and hackathons, managing a team of volunteers and ensuring smooth execution of society activities.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="contact-info">
+        <!-- EDIT YOUR CONTACT DETAILS HERE -->
+        <div class="contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <a href="mailto:johndoe@example.com">rishabhraj19nov@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <i class="fa-brands fa-github"></i>
+          <a href="https://github.com" target="_blank">https://github.com/rishabhraj19n</a>
+        </div>
+        <div class="contact-item">
+          <i class="fa-brands fa-linkedin"></i>
+          <a href="https://linkedin.com" target="_blank">www.linkedin.com/in/rishabh-raj-89033b346</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; <span id="year"></span> Rishabh Rajoki. All rights reserved.</p>
+  </footer>
+
+  <!-- LIGHT/DARK THEME TOGGLE SCRIPT -->
+  <script>
+    // Set current copyright year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme Switcher Logic
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const themeIcon = themeToggleBtn.querySelector('i');
+
+    themeToggleBtn.addEventListener('click', () => {
+      const currentTheme = document.body.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
+        document.body.removeAttribute('data-theme');
+        themeIcon.className = 'fa-solid fa-moon';
+      } else {
+        document.body.setAttribute('data-theme', 'dark');
+        themeIcon.className = 'fa-solid fa-sun';
+      }
+    });
+  </script>
+</body>
+</html>
